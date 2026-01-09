@@ -89,7 +89,7 @@ const Footer = () => {
             <div className="space-y-2 text-sm text-accent-foreground/80">
               <p>WhatsApp: +91 7620404725</p>
               <p>Phone: +91 7620404725</p>
-              <p>Maharashtra, India</p>
+              <p>Karad, Satara, Maharashtra, India</p>
             </div>
           </div>
         </div>

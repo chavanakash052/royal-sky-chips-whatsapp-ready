@@ -53,12 +53,12 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Phone</h3>
                   <p className="text-muted-foreground text-sm mb-2">Call us for immediate assistance</p>
-                  <a
-                    href={`tel:${PHONE_NUMBER}`}
-                    className="text-primary font-medium hover:underline"
-                  >
-                    {PHONE_NUMBER}
-                  </a>
+                  <Button variant="golden" size="sm" asChild>
+                    <a href={`tel:${PHONE_NUMBER}`}>
+                      <Phone className="w-4 h-4" />
+                      Call Now
+                    </a>
+                  </Button>
                 </div>
               </div>
 
@@ -70,7 +70,7 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Location</h3>
                   <p className="text-muted-foreground text-sm">
-                    Maharashtra, India
+                    Karad, Satara, Maharashtra, India
                   </p>
                 </div>
               </div>
@@ -83,7 +83,7 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Business Hours</h3>
                   <p className="text-muted-foreground text-sm">
-                    Monday - Saturday: 9:00 AM - 8:00 PM
+                    Monday - Sunday: 9:00 AM - 8:00 PM
                   </p>
                 </div>
               </div>
