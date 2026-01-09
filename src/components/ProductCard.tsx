@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Check } from "lucide-react";
+import { MessageCircle, Check, ShoppingCart } from "lucide-react";
+import { toast } from "sonner";
 
 interface ProductCardProps {
   name: string;
@@ -23,6 +24,12 @@ const ProductCard = ({ name, description, image, prices, isFresh }: ProductCardP
       `Hello Royal Sky Chips, I want to order ${name} – ${selectedWeight.weight}. Please share price and delivery details.`
     );
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
+  };
+
+  const handleAddToCart = () => {
+    toast.success(`Added to cart!`, {
+      description: `${name} (${selectedWeight.weight}) - ${selectedWeight.price}`,
+    });
   };
 
   return (
@@ -78,11 +85,17 @@ const ProductCard = ({ name, description, image, prices, isFresh }: ProductCardP
           </span>
         </div>
 
-        {/* Buy Button */}
-        <Button variant="whatsapp" className="w-full" onClick={handleBuyNow}>
-          <MessageCircle className="w-4 h-4" />
-          Buy Now on WhatsApp
-        </Button>
+        {/* Action Buttons */}
+        <div className="flex gap-2">
+          <Button variant="outline" className="flex-1" onClick={handleAddToCart}>
+            <ShoppingCart className="w-4 h-4" />
+            Add to Cart
+          </Button>
+          <Button variant="whatsapp" className="flex-1" onClick={handleBuyNow}>
+            <MessageCircle className="w-4 h-4" />
+            Buy Now
+          </Button>
+        </div>
       </div>
     </div>
   );
