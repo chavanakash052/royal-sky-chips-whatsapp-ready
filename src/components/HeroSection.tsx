@@ -42,16 +42,20 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button variant="hero" size="xl" onClick={openWhatsApp}>
-                <MessageCircle className="w-5 h-5" />
-                Buy Now on WhatsApp
+              <Button
+                variant="hero"
+                size="xl"
+                onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                Shop Now
               </Button>
               <Button
                 variant="outline"
                 size="xl"
-                onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={openWhatsApp}
               >
-                View Products
+                <MessageCircle className="w-5 h-5" />
+                Contact Us
               </Button>
             </div>
 
