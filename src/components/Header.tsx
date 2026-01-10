@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, MessageCircle } from "lucide-react";
+import logo from "@/assets/logo.jpeg";
 
 const WHATSAPP_NUMBER = "917620404725";
 
@@ -28,9 +29,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-display font-bold text-lg md:text-xl">R</span>
-            </div>
+            <img 
+              src={logo} 
+              alt="Royal Sky Chips Logo" 
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover"
+            />
             <div>
               <h1 className="font-display font-bold text-lg md:text-xl text-foreground">Royal Sky</h1>
               <p className="text-xs text-muted-foreground -mt-1">Chips</p>
