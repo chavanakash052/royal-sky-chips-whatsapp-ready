@@ -29,11 +29,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-primary bg-cream">
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-primary bg-white flex items-center justify-center">
               <img 
                 src={logo} 
                 alt="Royal Sky Chips Logo" 
-                className="w-full h-full object-cover object-center scale-125"
+                className="w-full h-full object-contain"
               />
             </div>
             <div>
