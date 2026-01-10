@@ -1,9 +1,6 @@
 import ProductCard from "@/components/ProductCard";
 import productClassic from "@/assets/product-classic.jpg";
 import productMasala from "@/assets/product-masala.jpg";
-import productPeri from "@/assets/product-peri.jpg";
-import productJaggery from "@/assets/product-jaggery.jpg";
-import productCoconut from "@/assets/product-coconut.jpg";
 
 const products = [
   {
@@ -28,39 +25,6 @@ const products = [
     ],
     isFresh: true,
   },
-  {
-    name: "Peri-Peri Banana Chips",
-    description: "African-inspired spice blend with a fiery kick. Irresistibly tangy.",
-    image: productPeri,
-    prices: [
-      { weight: "100g", price: "₹59" },
-      { weight: "250g", price: "₹119" },
-      { weight: "500g", price: "₹199" },
-    ],
-    isFresh: false,
-  },
-  {
-    name: "Sweet Jaggery Banana Chips",
-    description: "Natural jaggery coating for a sweet and healthy treat.",
-    image: productJaggery,
-    prices: [
-      { weight: "100g", price: "₹69" },
-      { weight: "250g", price: "₹139" },
-      { weight: "500g", price: "₹249" },
-    ],
-    isFresh: false,
-  },
-  {
-    name: "Premium Coconut Oil Chips",
-    description: "Kerala-style chips fried in pure coconut oil. Aromatic and delicious.",
-    image: productCoconut,
-    prices: [
-      { weight: "100g", price: "₹79" },
-      { weight: "250g", price: "₹149" },
-      { weight: "500g", price: "₹269" },
-    ],
-    isFresh: true,
-  },
 ];
 
 const ProductsSection = () => {
@@ -79,7 +43,7 @@ const ProductsSection = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
           {products.map((product) => (
             <ProductCard key={product.name} {...product} />
           ))}
