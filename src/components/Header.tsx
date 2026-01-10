@@ -29,11 +29,13 @@ const Header = () => {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <img 
-              src={logo} 
-              alt="Royal Sky Chips Logo" 
-              className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover"
-            />
+            <div className="w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden border-2 border-primary bg-cream">
+              <img 
+                src={logo} 
+                alt="Royal Sky Chips Logo" 
+                className="w-full h-full object-cover object-center scale-125"
+              />
+            </div>
             <div>
               <h1 className="font-display font-bold text-lg md:text-xl text-foreground">Royal Sky</h1>
               <p className="text-xs text-muted-foreground -mt-1">Chips</p>
