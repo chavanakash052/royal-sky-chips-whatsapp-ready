@@ -96,7 +96,7 @@ const Footer = () => {
 
         <div className="border-t border-accent-foreground/10 pt-8 text-center text-sm text-accent-foreground/60">
           <p>© {new Date().getFullYear()} Royal Sky Chips. All rights reserved.</p>
-          <p className="mt-1">Made with ❤️ by Abhijit Chavan</p>
+          <p className="mt-1">Made with ❤️ by Akash Chavan</p>
         </div>
       </div>
     </footer>
