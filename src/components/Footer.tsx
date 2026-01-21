@@ -44,7 +44,9 @@ const Footer = () => {
                 <Phone className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/royalskychips?igsh=MTM4OHRvdjA4aGF3dQ=="
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-accent-foreground/10 flex items-center justify-center hover:bg-accent-foreground/20 transition-colors"
               >
                 <Instagram className="w-5 h-5" />
