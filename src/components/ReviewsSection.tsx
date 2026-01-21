@@ -17,11 +17,11 @@ const reviews = [
     avatar: "RK",
   },
   {
-    name: "Anjali Deshmukh",
+    name: "Akash Chavan",
     location: "Nashik",
     rating: 5,
     review: "Perfect snack for my kids. No preservatives and tastes amazing. Thank you Royal Sky Chips!",
-    avatar: "AD",
+    avatar: "AC",
   },
   {
     name: "Vikram Patil",
