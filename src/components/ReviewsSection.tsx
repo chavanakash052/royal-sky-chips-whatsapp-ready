@@ -18,7 +18,7 @@ const reviews = [
   },
   {
     name: "Akash Chavan",
-    location: "Nashik",
+    location: "Koparde Haveli",
     rating: 5,
     review: "Perfect snack for my kids. No preservatives and tastes amazing. Thank you Royal Sky Chips!",
     avatar: "AC",
