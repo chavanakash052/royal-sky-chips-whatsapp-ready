@@ -31,11 +31,11 @@ const reviews = [
     avatar: "VP",
   },
   {
-    name: "Sneha Joshi",
+    name: "Akshay Chavan",
     location: "Karad",
     rating: 5,
     review: "Authentic taste that brings back childhood memories. Quality packaging and quick delivery!",
-    avatar: "SJ",
+    avatar: "AC",
   },
 ];
 
