@@ -32,7 +32,7 @@ const reviews = [
   },
   {
     name: "Sneha Joshi",
-    location: "Kolhapur",
+    location: "Karad",
     rating: 5,
     review: "Authentic taste that brings back childhood memories. Quality packaging and quick delivery!",
     avatar: "SJ",
