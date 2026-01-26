@@ -7,14 +7,14 @@ const reviews = [
     location: "Karad",
     rating: 5,
     review: "Best banana chips I've ever tasted! The masala flavor is absolutely addictive. My whole family loves it.",
-    avatar: "PS",
+    avatar: "SC",
   },
   {
     name: "Pradip Pawar",
     location: "Vadoli Nileshwar",
     rating: 5,
     review: "Fresh, crispy, and delivered quickly. The coconut oil chips remind me of Kerala. Will order again!",
-    avatar: "RK",
+    avatar: "PP",
   },
   {
     name: "Akash Chavan",
