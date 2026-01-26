@@ -3,15 +3,15 @@ import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const reviews = [
   {
-    name: "Priya Sharma",
+    name: "Saurabh Chavan",
     location: "Karad",
     rating: 5,
     review: "Best banana chips I've ever tasted! The masala flavor is absolutely addictive. My whole family loves it.",
     avatar: "PS",
   },
   {
-    name: "Rajesh Kumar",
-    location: "Pune",
+    name: "Pradip Pawar",
+    location: "Vadoli Nileshwar",
     rating: 5,
     review: "Fresh, crispy, and delivered quickly. The coconut oil chips remind me of Kerala. Will order again!",
     avatar: "RK",
@@ -25,14 +25,14 @@ const reviews = [
   },
   {
     name: "Vikram Patil",
-    location: "Nagpur",
+    location: "Karad",
     rating: 5,
     review: "Ordered for a party and everyone loved it! The jaggery chips are unique and delicious.",
     avatar: "VP",
   },
   {
     name: "Akshay Chavan",
-    location: "Karad",
+    location: "Koparde Haveli",
     rating: 5,
     review: "Authentic taste that brings back childhood memories. Quality packaging and quick delivery!",
     avatar: "AC",
