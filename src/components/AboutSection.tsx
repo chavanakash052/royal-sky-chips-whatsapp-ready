@@ -1,4 +1,5 @@
 import { Heart, Users, Clock, Award } from "lucide-react";
+import founderImage from "@/assets/founder-abhijit.jpeg";
 
 const stats = [
   { icon: Heart, value: "1000+", label: "Happy Customers" },
@@ -33,8 +34,12 @@ const AboutSection = () => {
             </div>
 
             <div className="flex items-center gap-4 pt-4">
-              <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center">
-                <span className="font-display font-bold text-2xl text-primary">AC</span>
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary">
+                <img 
+                  src={founderImage} 
+                  alt="Abhijit Chavan - Founder of Royal Sky Chips" 
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
               <div>
                 <p className="font-semibold text-foreground">Abhijit Chavan</p>
