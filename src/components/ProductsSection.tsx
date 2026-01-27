@@ -2,6 +2,7 @@ import ProductCard from "@/components/ProductCard";
 import productClassic from "@/assets/product-classic.jpg";
 import productMasala from "@/assets/product-masala.jpg";
 import productLongSalted from "@/assets/product-long-salted.png";
+import productLongMasala from "@/assets/product-long-masala.png";
 
 const products = [
   {
@@ -43,7 +44,7 @@ const products = [
   {
     name: "Long Spicy Masala Banana Chips",
     description: "Elongated banana chips with bold masala spices. A fiery twist on the classic.",
-    image: productMasala,
+    image: productLongMasala,
     prices: [
       { weight: "100g", price: "₹59" },
       { weight: "250g", price: "₹119" },
