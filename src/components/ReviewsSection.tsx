@@ -24,11 +24,11 @@ const reviews = [
     avatar: "AC",
   },
   {
-    name: "Vikram Patil",
+    name: "Rutvik Desai",
     location: "Karad",
     rating: 5,
     review: "Ordered for a party and everyone loved it! The jaggery chips are unique and delicious.",
-    avatar: "VP",
+    avatar: "RD",
   },
   {
     name: "Akshay Chavan",
