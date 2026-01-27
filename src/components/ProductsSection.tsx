@@ -27,6 +27,30 @@ const products = [
     ],
     isFresh: true,
   },
+  {
+    name: "Long Salted Banana Chips",
+    description: "Elongated crispy banana chips with classic salt seasoning. Extra crunch in every bite.",
+    image: productClassic,
+    prices: [
+      { weight: "100g", price: "₹49" },
+      { weight: "250g", price: "₹99" },
+      { weight: "500g", price: "₹179" },
+      { weight: "1 Kg", price: "₹349" },
+    ],
+    isFresh: true,
+  },
+  {
+    name: "Long Spicy Masala Banana Chips",
+    description: "Elongated banana chips with bold masala spices. A fiery twist on the classic.",
+    image: productMasala,
+    prices: [
+      { weight: "100g", price: "₹59" },
+      { weight: "250g", price: "₹119" },
+      { weight: "500g", price: "₹199" },
+      { weight: "1 Kg", price: "₹359" },
+    ],
+    isFresh: true,
+  },
 ];
 
 const ProductsSection = () => {
@@ -45,7 +69,7 @@ const ProductsSection = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {products.map((product) => (
             <ProductCard key={product.name} {...product} />
           ))}
