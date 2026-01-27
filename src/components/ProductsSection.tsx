@@ -1,6 +1,6 @@
 import ProductCard from "@/components/ProductCard";
 import productClassic from "@/assets/product-classic.jpg";
-import productMasala from "@/assets/product-masala.jpg";
+import productMasala from "@/assets/product-masala.png";
 import productLongSalted from "@/assets/product-long-salted.png";
 import productLongMasala from "@/assets/product-long-masala.png";
 
