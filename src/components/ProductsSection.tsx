@@ -1,6 +1,7 @@
 import ProductCard from "@/components/ProductCard";
 import productClassic from "@/assets/product-classic.jpg";
 import productMasala from "@/assets/product-masala.jpg";
+import productLongSalted from "@/assets/product-long-salted.png";
 
 const products = [
   {
@@ -30,7 +31,7 @@ const products = [
   {
     name: "Long Salted Banana Chips",
     description: "Elongated crispy banana chips with classic salt seasoning. Extra crunch in every bite.",
-    image: productClassic,
+    image: productLongSalted,
     prices: [
       { weight: "100g", price: "₹49" },
       { weight: "250g", price: "₹99" },
