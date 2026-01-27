@@ -86,14 +86,14 @@ const ProductCard = ({ name, description, image, prices, isFresh }: ProductCardP
         </div>
 
         {/* Action Buttons */}
-        <div className="flex gap-2">
-          <Button variant="outline" className="flex-1" onClick={handleAddToCart}>
-            <ShoppingCart className="w-4 h-4" />
-            Add to Cart
+        <div className="flex flex-col sm:flex-row gap-2">
+          <Button variant="outline" className="flex-1 min-w-0" onClick={handleAddToCart}>
+            <ShoppingCart className="w-4 h-4 flex-shrink-0" />
+            <span className="truncate">Add to Cart</span>
           </Button>
-          <Button variant="whatsapp" className="flex-1" onClick={handleBuyNow}>
-            <MessageCircle className="w-4 h-4" />
-            Buy Now
+          <Button variant="whatsapp" className="flex-1 min-w-0" onClick={handleBuyNow}>
+            <MessageCircle className="w-4 h-4 flex-shrink-0" />
+            <span className="truncate">Buy Now</span>
           </Button>
         </div>
       </div>
