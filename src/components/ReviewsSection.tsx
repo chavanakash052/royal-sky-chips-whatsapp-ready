@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import { Star, ChevronLeft, ChevronRight, Quote, MessageSquare } from "lucide-react";
-import { useReviews } from "@/hooks/useReviews";
+import { ChevronLeft, ChevronRight, MessageSquare } from "lucide-react";
 import ReviewForm from "./ReviewForm";
 import ReviewCard from "./ReviewCard";
-import { Skeleton } from "@/components/ui/skeleton";
+import { useReviews } from "@/hooks/useReviews";
 
 const trustBadges = [
   { label: "Fresh Batch Daily", icon: "🌿" },
@@ -11,10 +10,49 @@ const trustBadges = [
   { label: "Quality Checked", icon: "✓" },
 ];
 
+const staticReviews = [
+  {
+    id: "1",
+    name: "Saurabh Chavan",
+    rating: 5,
+    message: "Best banana chips I've ever tasted! The masala flavor is perfectly balanced. My whole family loves them. Will definitely order again!",
+    created_at: "2025-12-15T10:30:00Z",
+  },
+  {
+    id: "2",
+    name: "Pradip Pawar",
+    rating: 5,
+    message: "Excellent quality and freshness. You can tell these are made with care. The classic salted chips remind me of homemade ones!",
+    created_at: "2025-12-20T14:45:00Z",
+  },
+  {
+    id: "3",
+    name: "Akash Chavan",
+    rating: 5,
+    message: "Ordered for a family gathering and everyone loved them! Great taste and the packaging was perfect. Highly recommended!",
+    created_at: "2026-01-02T09:15:00Z",
+  },
+  {
+    id: "4",
+    name: "Rutvik Desai",
+    rating: 5,
+    message: "The jaggery-coated chips are amazing! Sweet and crispy, perfect with evening tea. Already placed my second order!",
+    created_at: "2026-01-10T16:20:00Z",
+  },
+  {
+    id: "5",
+    name: "Akshay Chavan",
+    rating: 5,
+    message: "Fresh, crispy, and delicious! The coconut flavor is unique and tasty. Best local banana chips in Karad!",
+    created_at: "2026-01-25T11:00:00Z",
+  },
+];
+
 const ReviewsSection = () => {
-  const { reviews, isLoading, isSubmitting, submitReview } = useReviews();
+  const { isSubmitting, submitReview } = useReviews();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const reviews = staticReviews;
 
   useEffect(() => {
     if (!isAutoPlaying || reviews.length === 0) return;
@@ -62,21 +100,7 @@ const ReviewsSection = () => {
         <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {/* Reviews Display - Takes 2 columns on large screens */}
           <div className="lg:col-span-2">
-            {isLoading ? (
-              <div className="grid md:grid-cols-2 gap-6">
-                {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="bg-card rounded-2xl p-6 shadow-lg">
-                    <Skeleton className="h-8 w-8 mb-4" />
-                    <Skeleton className="h-4 w-24 mb-4" />
-                    <Skeleton className="h-20 w-full mb-6" />
-                    <div className="flex items-center gap-3">
-                      <Skeleton className="h-10 w-10 rounded-full" />
-                      <Skeleton className="h-4 w-32" />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : reviews.length > 0 ? (
+            {reviews.length > 0 ? (
               <>
                 {/* Grid View for Desktop */}
                 <div className="hidden md:grid md:grid-cols-2 gap-6">
