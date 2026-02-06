@@ -1,10 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Phone, MapPin, Clock } from "lucide-react";
+import ReviewForm from "./ReviewForm";
+import { useReviews } from "@/hooks/useReviews";
 
 const WHATSAPP_NUMBER = "917620404725";
 const PHONE_NUMBER = "+91 7620404725";
 
 const ContactSection = () => {
+  const { isSubmitting, submitReview } = useReviews();
+
   const openWhatsApp = () => {
     window.open(
       `https://wa.me/${WHATSAPP_NUMBER}?text=Hello Royal Sky Chips, I have a question about your products.`,
@@ -90,48 +94,8 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-card rounded-2xl p-8 shadow-lg">
-            <h3 className="font-display text-xl font-semibold text-foreground mb-6">
-              Send us a Message
-            </h3>
-            <form className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  className="w-full px-4 py-3 rounded-xl bg-muted border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  placeholder="Enter your phone number"
-                  className="w-full px-4 py-3 rounded-xl bg-muted border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-foreground mb-2">
-                  Message
-                </label>
-                <textarea
-                  rows={4}
-                  placeholder="How can we help you?"
-                  className="w-full px-4 py-3 rounded-xl bg-muted border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
-                />
-              </div>
-              <Button variant="golden" className="w-full" type="button" onClick={openWhatsApp}>
-                <MessageCircle className="w-4 h-4" />
-                Send via WhatsApp
-              </Button>
-            </form>
-          </div>
+          {/* Review Form */}
+          <ReviewForm onSubmit={submitReview} isSubmitting={isSubmitting} />
         </div>
       </div>
     </section>

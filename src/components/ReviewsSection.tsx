@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, MessageSquare } from "lucide-react";
-import ReviewForm from "./ReviewForm";
 import ReviewCard from "./ReviewCard";
-import { useReviews } from "@/hooks/useReviews";
 
 const trustBadges = [
   { label: "Fresh Batch Daily", icon: "🌿" },
@@ -49,7 +47,6 @@ const staticReviews = [
 ];
 
 const ReviewsSection = () => {
-  const { isSubmitting, submitReview } = useReviews();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const reviews = staticReviews;
@@ -97,9 +94,9 @@ const ReviewsSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {/* Reviews Display - Takes 2 columns on large screens */}
-          <div className="lg:col-span-2">
+        <div className="max-w-4xl mx-auto">
+          {/* Reviews Display */}
+          <div>
             {reviews.length > 0 ? (
               <div className="relative">
                 {/* Single Card Carousel */}
@@ -161,11 +158,6 @@ const ReviewsSection = () => {
                 </p>
               </div>
             )}
-          </div>
-
-          {/* Review Form - Takes 1 column */}
-          <div className="lg:col-span-1">
-            <ReviewForm onSubmit={submitReview} isSubmitting={isSubmitting} />
           </div>
         </div>
       </div>
