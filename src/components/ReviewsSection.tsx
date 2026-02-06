@@ -101,73 +101,58 @@ const ReviewsSection = () => {
           {/* Reviews Display - Takes 2 columns on large screens */}
           <div className="lg:col-span-2">
             {reviews.length > 0 ? (
-              <>
-                {/* Grid View for Desktop */}
-                <div className="hidden md:grid md:grid-cols-2 gap-6">
-                  {reviews.slice(0, 4).map((review) => (
-                    <ReviewCard
-                      key={review.id}
-                      name={review.name}
-                      rating={review.rating}
-                      message={review.message}
-                      createdAt={review.created_at}
-                    />
-                  ))}
-                </div>
-
-                {/* Carousel for Mobile */}
-                <div className="md:hidden relative">
-                  <div className="overflow-hidden">
-                    <div
-                      className="flex transition-transform duration-500"
-                      style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                    >
-                      {reviews.map((review) => (
-                        <div key={review.id} className="w-full flex-shrink-0 px-2">
-                          <ReviewCard
-                            name={review.name}
-                            rating={review.rating}
-                            message={review.message}
-                            createdAt={review.created_at}
-                          />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Navigation Buttons */}
-                  <button
-                    onClick={handlePrev}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-10 h-10 rounded-full bg-card shadow-md flex items-center justify-center hover:bg-muted transition-colors"
+              <div className="relative">
+                {/* Single Card Carousel */}
+                <div className="overflow-hidden">
+                  <div
+                    className="flex transition-transform duration-500 ease-out"
+                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                   >
-                    <ChevronLeft className="w-5 h-5 text-foreground" />
-                  </button>
-                  <button
-                    onClick={handleNext}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-10 h-10 rounded-full bg-card shadow-md flex items-center justify-center hover:bg-muted transition-colors"
-                  >
-                    <ChevronRight className="w-5 h-5 text-foreground" />
-                  </button>
-
-                  {/* Dots */}
-                  <div className="flex justify-center gap-2 mt-6">
-                    {reviews.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => {
-                          setIsAutoPlaying(false);
-                          setCurrentIndex(index);
-                        }}
-                        className={`w-2.5 h-2.5 rounded-full transition-all ${
-                          index === currentIndex
-                            ? "bg-primary w-8"
-                            : "bg-border hover:bg-muted-foreground"
-                        }`}
-                      />
+                    {reviews.map((review) => (
+                      <div key={review.id} className="w-full flex-shrink-0 px-2">
+                        <ReviewCard
+                          name={review.name}
+                          rating={review.rating}
+                          message={review.message}
+                          createdAt={review.created_at}
+                        />
+                      </div>
                     ))}
                   </div>
                 </div>
-              </>
+
+                {/* Navigation Buttons */}
+                <button
+                  onClick={handlePrev}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 w-10 h-10 rounded-full bg-card shadow-md flex items-center justify-center hover:bg-muted transition-colors z-10"
+                >
+                  <ChevronLeft className="w-5 h-5 text-foreground" />
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 w-10 h-10 rounded-full bg-card shadow-md flex items-center justify-center hover:bg-muted transition-colors z-10"
+                >
+                  <ChevronRight className="w-5 h-5 text-foreground" />
+                </button>
+
+                {/* Dots */}
+                <div className="flex justify-center gap-2 mt-6">
+                  {reviews.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        setIsAutoPlaying(false);
+                        setCurrentIndex(index);
+                      }}
+                      className={`w-2.5 h-2.5 rounded-full transition-all ${
+                        index === currentIndex
+                          ? "bg-primary w-8"
+                          : "bg-border hover:bg-muted-foreground"
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
             ) : (
               <div className="bg-card rounded-2xl p-8 text-center shadow-lg">
                 <MessageSquare className="w-12 h-12 text-muted-foreground/50 mx-auto mb-4" />
