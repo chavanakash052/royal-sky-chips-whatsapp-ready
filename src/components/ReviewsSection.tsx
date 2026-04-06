@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, MessageSquare } from "lucide-react";
+import { ChevronLeft, ChevronRight, MessageSquare, Star } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import ReviewCard from "./ReviewCard";
 
 const trustBadges = [
@@ -49,7 +50,12 @@ const staticReviews = [
 const ReviewsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const { ref, isVisible } = useScrollAnimation();
   const reviews = staticReviews;
+
+  const avgRating = reviews.length > 0
+    ? (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1)
+    : "0";
 
   useEffect(() => {
     if (!isAutoPlaying || reviews.length === 0) return;
@@ -71,9 +77,9 @@ const ReviewsSection = () => {
 
   return (
     <section id="reviews" className="py-16 md:py-24 bg-muted/50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" ref={ref}>
         {/* Trust Badges */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className={`flex flex-wrap justify-center gap-4 mb-12 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           {trustBadges.map((badge) => (
             <div
               key={badge.label}
@@ -85,80 +91,87 @@ const ReviewsSection = () => {
           ))}
         </div>
 
-        <div className="text-center mb-12">
+        <div className={`text-center mb-12 transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
             What Our Customers Say
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
             Join thousands of happy customers who love our banana chips.
           </p>
+          {/* Aggregate Rating */}
+          <div className="inline-flex items-center gap-2 bg-card px-5 py-2 rounded-full shadow-sm">
+            <div className="flex items-center gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <Star key={star} className="w-4 h-4 fill-primary text-primary" />
+              ))}
+            </div>
+            <span className="font-bold text-foreground">{avgRating}/5</span>
+            <span className="text-muted-foreground text-sm">from {reviews.length}+ reviews</span>
+          </div>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Reviews Display */}
-          <div>
-            {reviews.length > 0 ? (
-              <div className="relative">
-                {/* Single Card Carousel */}
-                <div className="overflow-hidden">
-                  <div
-                    className="flex transition-transform duration-500 ease-out"
-                    style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-                  >
-                    {reviews.map((review) => (
-                      <div key={review.id} className="w-full flex-shrink-0 px-2">
-                        <ReviewCard
-                          name={review.name}
-                          rating={review.rating}
-                          message={review.message}
-                          createdAt={review.created_at}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Navigation Buttons */}
-                <button
-                  onClick={handlePrev}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 w-10 h-10 rounded-full bg-card shadow-md flex items-center justify-center hover:bg-muted transition-colors z-10"
+        <div className={`max-w-4xl mx-auto transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          {reviews.length > 0 ? (
+            <div className="relative">
+              <div className="overflow-hidden">
+                <div
+                  className="flex transition-transform duration-500 ease-out"
+                  style={{ transform: `translateX(-${currentIndex * 100}%)` }}
                 >
-                  <ChevronLeft className="w-5 h-5 text-foreground" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 w-10 h-10 rounded-full bg-card shadow-md flex items-center justify-center hover:bg-muted transition-colors z-10"
-                >
-                  <ChevronRight className="w-5 h-5 text-foreground" />
-                </button>
-
-                {/* Dots */}
-                <div className="flex justify-center gap-2 mt-6">
-                  {reviews.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => {
-                        setIsAutoPlaying(false);
-                        setCurrentIndex(index);
-                      }}
-                      className={`w-2.5 h-2.5 rounded-full transition-all ${
-                        index === currentIndex
-                          ? "bg-primary w-8"
-                          : "bg-border hover:bg-muted-foreground"
-                      }`}
-                    />
+                  {reviews.map((review) => (
+                    <div key={review.id} className="w-full flex-shrink-0 px-2">
+                      <ReviewCard
+                        name={review.name}
+                        rating={review.rating}
+                        message={review.message}
+                        createdAt={review.created_at}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
-            ) : (
-              <div className="bg-card rounded-2xl p-8 text-center shadow-lg">
-                <MessageSquare className="w-12 h-12 text-muted-foreground/50 mx-auto mb-4" />
-                <p className="text-muted-foreground">
-                  Be the first to share your experience with our banana chips!
-                </p>
+
+              <button
+                onClick={handlePrev}
+                aria-label="Previous review"
+                className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 w-10 h-10 rounded-full bg-card shadow-md flex items-center justify-center hover:bg-muted transition-colors z-10"
+              >
+                <ChevronLeft className="w-5 h-5 text-foreground" />
+              </button>
+              <button
+                onClick={handleNext}
+                aria-label="Next review"
+                className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 w-10 h-10 rounded-full bg-card shadow-md flex items-center justify-center hover:bg-muted transition-colors z-10"
+              >
+                <ChevronRight className="w-5 h-5 text-foreground" />
+              </button>
+
+              <div className="flex justify-center gap-2 mt-6">
+                {reviews.map((_, index) => (
+                  <button
+                    key={index}
+                    aria-label={`Go to review ${index + 1}`}
+                    onClick={() => {
+                      setIsAutoPlaying(false);
+                      setCurrentIndex(index);
+                    }}
+                    className={`w-2.5 h-2.5 rounded-full transition-all ${
+                      index === currentIndex
+                        ? "bg-primary w-8"
+                        : "bg-border hover:bg-muted-foreground"
+                    }`}
+                  />
+                ))}
               </div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div className="bg-card rounded-2xl p-8 text-center shadow-lg">
+              <MessageSquare className="w-12 h-12 text-muted-foreground/50 mx-auto mb-4" />
+              <p className="text-muted-foreground">
+                Be the first to share your experience with our banana chips!
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>

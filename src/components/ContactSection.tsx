@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Phone, MapPin, Clock } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import ReviewForm from "./ReviewForm";
 import { useReviews } from "@/hooks/useReviews";
 
@@ -8,6 +9,7 @@ const PHONE_NUMBER = "+91 7620404725";
 
 const ContactSection = () => {
   const { isSubmitting, submitReview } = useReviews();
+  const { ref, isVisible } = useScrollAnimation();
 
   const openWhatsApp = () => {
     window.open(
@@ -18,10 +20,9 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="py-16 md:py-24 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" ref={ref}>
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <div className="space-y-8">
+          <div className={`space-y-8 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
             <div>
               <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
                 Get in Touch
@@ -35,7 +36,6 @@ const ContactSection = () => {
             </div>
 
             <div className="space-y-6">
-              {/* WhatsApp */}
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-whatsapp/10 flex items-center justify-center flex-shrink-0">
                   <MessageCircle className="w-6 h-6 text-whatsapp" />
@@ -49,7 +49,6 @@ const ContactSection = () => {
                 </div>
               </div>
 
-              {/* Phone */}
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Phone className="w-6 h-6 text-primary" />
@@ -66,7 +65,6 @@ const ContactSection = () => {
                 </div>
               </div>
 
-              {/* Location */}
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
                   <MapPin className="w-6 h-6 text-secondary" />
@@ -79,7 +77,6 @@ const ContactSection = () => {
                 </div>
               </div>
 
-              {/* Hours */}
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                   <Clock className="w-6 h-6 text-accent" />
@@ -94,8 +91,9 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Review Form */}
-          <ReviewForm onSubmit={submitReview} isSubmitting={isSubmitting} />
+          <div className={`transition-all duration-700 delay-200 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
+            <ReviewForm onSubmit={submitReview} isSubmitting={isSubmitting} />
+          </div>
         </div>
       </div>
     </section>

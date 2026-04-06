@@ -1,4 +1,5 @@
 import { Sparkles, ShieldCheck, Package, Leaf } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const features = [
   {
@@ -24,10 +25,12 @@ const features = [
 ];
 
 const FeaturesSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
     <section className="py-16 md:py-24 bg-muted/50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+      <div className="container mx-auto px-4" ref={ref}>
+        <div className={`text-center mb-12 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
             Why Choose Royal Sky Chips?
           </h2>
@@ -40,8 +43,8 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="group bg-card rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`group bg-card rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-500 hover:-translate-y-1 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <feature.icon className="w-7 h-7 text-primary" />

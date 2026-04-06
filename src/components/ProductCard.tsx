@@ -33,12 +33,18 @@ const ProductCard = ({ name, description, image, prices, isFresh }: ProductCardP
   };
 
   return (
-    <div className="group bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+    <div className="group bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
+      {/* Shine Effect */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20 overflow-hidden rounded-2xl">
+        <div className="absolute inset-0 animate-shimmer" />
+      </div>
+
       {/* Image Container */}
       <div className="relative aspect-square overflow-hidden bg-muted">
         <img
           src={image}
           alt={name}
+          loading="lazy"
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {isFresh && (
@@ -64,9 +70,9 @@ const ProductCard = ({ name, description, image, prices, isFresh }: ProductCardP
             <button
               key={option.weight}
               onClick={() => setSelectedWeight(option)}
-              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
                 selectedWeight.weight === option.weight
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-primary text-primary-foreground shadow-sm scale-105"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >

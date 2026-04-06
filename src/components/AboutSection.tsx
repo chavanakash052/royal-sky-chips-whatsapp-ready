@@ -1,4 +1,5 @@
 import { Heart, Users, Clock, Award } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import founderImage from "@/assets/founder-abhijit.jpeg";
 
 const stats = [
@@ -9,12 +10,13 @@ const stats = [
 ];
 
 const AboutSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
     <section id="about" className="py-16 md:py-24 bg-background">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" ref={ref}>
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Content */}
-          <div className="space-y-6">
+          <div className={`space-y-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
             <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
               Our Story
             </span>
@@ -35,9 +37,10 @@ const AboutSection = () => {
 
             <div className="flex items-center gap-4 pt-4">
               <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-primary">
-                <img 
-                  src={founderImage} 
-                  alt="Abhijit Chavan - Founder of Royal Sky Chips" 
+                <img
+                  src={founderImage}
+                  alt="Abhijit Chavan - Founder of Royal Sky Chips"
+                  loading="lazy"
                   className="w-full h-full object-cover object-top"
                 />
               </div>
@@ -48,12 +51,12 @@ const AboutSection = () => {
             </div>
           </div>
 
-          {/* Stats Grid */}
           <div className="grid grid-cols-2 gap-4">
-            {stats.map((stat) => (
+            {stats.map((stat, index) => (
               <div
                 key={stat.label}
-                className="bg-card rounded-2xl p-6 shadow-md text-center hover:shadow-lg transition-shadow"
+                className={`bg-card rounded-2xl p-6 shadow-md text-center hover:shadow-lg transition-all duration-500 hover:-translate-y-1 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                style={{ transitionDelay: `${index * 150}ms` }}
               >
                 <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
                   <stat.icon className="w-6 h-6 text-primary" />

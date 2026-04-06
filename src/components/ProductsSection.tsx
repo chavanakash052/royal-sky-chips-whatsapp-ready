@@ -1,4 +1,5 @@
 import ProductCard from "@/components/ProductCard";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import productClassic from "@/assets/product-classic.png";
 import productMasala from "@/assets/product-masala.jpg";
 import productLongSalted from "@/assets/product-long-salted.png";
@@ -56,10 +57,12 @@ const products = [
 ];
 
 const ProductsSection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
     <section id="products" className="py-16 md:py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
+      <div className="container mx-auto px-4" ref={ref}>
+        <div className={`text-center mb-12 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <span className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4">
             Our Products
           </span>
@@ -72,13 +75,18 @@ const ProductsSection = () => {
         </div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {products.map((product) => (
-            <ProductCard key={product.name} {...product} />
+          {products.map((product, index) => (
+            <div
+              key={product.name}
+              className={`transition-all duration-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: `${index * 150}ms` }}
+            >
+              <ProductCard {...product} />
+            </div>
           ))}
         </div>
 
-        {/* Bulk Order CTA */}
-        <div className="mt-12 text-center">
+        <div className={`mt-12 text-center transition-all duration-700 delay-500 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-muted-foreground mb-4">
             Looking for bulk orders or wholesale pricing?
           </p>
