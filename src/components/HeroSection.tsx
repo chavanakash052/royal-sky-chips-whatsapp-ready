@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { MessageCircle, Leaf, Shield, Award } from "lucide-react";
+import { MessageCircle, Leaf, Shield, Award, Users, Flame } from "lucide-react";
 import heroImage from "@/assets/hero-chips.jpg";
 
 const WHATSAPP_NUMBER = "917620404725";
@@ -25,14 +25,15 @@ const HeroSection = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="text-center lg:text-left space-y-6 animate-fade-in">
-            <div className="inline-flex items-center gap-2 bg-secondary/20 text-secondary px-4 py-2 rounded-full text-sm font-medium">
-              <Leaf className="w-4 h-4" />
-              Today's Fresh Batch Available
+            {/* Urgency Badge */}
+            <div className="inline-flex items-center gap-2 bg-destructive/10 text-destructive px-4 py-2 rounded-full text-sm font-semibold animate-pulse-slow">
+              <Flame className="w-4 h-4" />
+              Limited Stock — Order Today!
             </div>
 
             <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
               Fresh & Crispy
-              <span className="block text-primary">Premium Banana Chips</span>
+              <span className="block text-gradient-golden">Premium Banana Chips</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0">
@@ -44,8 +45,10 @@ const HeroSection = () => {
                 variant="hero"
                 size="xl"
                 onClick={() => document.getElementById("products")?.scrollIntoView({ behavior: "smooth" })}
+                className="group"
               >
                 Shop Now
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
               </Button>
               <Button variant="outline" size="xl" onClick={openWhatsApp}>
                 <MessageCircle className="w-5 h-5" />
@@ -53,6 +56,7 @@ const HeroSection = () => {
               </Button>
             </div>
 
+            {/* Trust Badges */}
             <div className="flex flex-wrap gap-6 justify-center lg:justify-start pt-4">
               <div className="flex items-center gap-2 text-muted-foreground">
                 <div className="w-10 h-10 rounded-full bg-secondary/20 flex items-center justify-center">
@@ -92,6 +96,21 @@ const HeroSection = () => {
             <div className="absolute -top-8 -right-8 w-32 h-32 bg-primary/20 rounded-full blur-3xl" />
             <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-secondary/20 rounded-full blur-3xl" />
           </div>
+        </div>
+
+        {/* Stats Strip */}
+        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+          {[
+            { value: "1000+", label: "Happy Customers", icon: Users },
+            { value: "4", label: "Delicious Flavors", icon: Leaf },
+            { value: "100%", label: "Natural Ingredients", icon: Shield },
+            { value: "4.9★", label: "Average Rating", icon: Award },
+          ].map((stat) => (
+            <div key={stat.label} className="text-center p-4 rounded-2xl bg-card/80 backdrop-blur-sm border border-border/50">
+              <div className="text-2xl md:text-3xl font-bold text-primary font-display">{stat.value}</div>
+              <div className="text-xs md:text-sm text-muted-foreground mt-1">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
