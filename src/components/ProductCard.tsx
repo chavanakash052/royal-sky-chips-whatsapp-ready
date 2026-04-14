@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, Check, ShoppingCart } from "lucide-react";
 import { toast } from "sonner";
+import { useCart } from "@/contexts/CartContext";
 
 interface ProductCardProps {
   name: string;
@@ -12,12 +13,14 @@ interface ProductCardProps {
     price: string;
   }[];
   isFresh?: boolean;
+  isBestseller?: boolean;
 }
 
 const WHATSAPP_NUMBER = "917620404725";
 
-const ProductCard = ({ name, description, image, prices, isFresh }: ProductCardProps) => {
+const ProductCard = ({ name, description, image, prices, isFresh, isBestseller }: ProductCardProps) => {
   const [selectedWeight, setSelectedWeight] = useState(prices[0]);
+  const { addItem, setIsOpen } = useCart();
 
   const handleBuyNow = () => {
     const message = encodeURIComponent(
@@ -27,13 +30,23 @@ const ProductCard = ({ name, description, image, prices, isFresh }: ProductCardP
   };
 
   const handleAddToCart = () => {
+    addItem({
+      name,
+      weight: selectedWeight.weight,
+      price: selectedWeight.price,
+      image,
+    });
     toast.success(`Added to cart!`, {
       description: `${name} (${selectedWeight.weight}) - ${selectedWeight.price}`,
+      action: {
+        label: "View Cart",
+        onClick: () => setIsOpen(true),
+      },
     });
   };
 
   return (
-    <div className="group bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 relative">
+    <div className="group bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 relative border border-border/50 hover:border-primary/30">
       {/* Shine Effect */}
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-20 overflow-hidden rounded-2xl">
         <div className="absolute inset-0 animate-shimmer" />
@@ -45,14 +58,21 @@ const ProductCard = ({ name, description, image, prices, isFresh }: ProductCardP
           src={image}
           alt={name}
           loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
         />
-        {isFresh && (
-          <div className="absolute top-3 left-3 bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
-            <Check className="w-3 h-3" />
-            Fresh Batch
-          </div>
-        )}
+        <div className="absolute top-3 left-3 flex flex-col gap-2">
+          {isFresh && (
+            <div className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
+              <Check className="w-3 h-3" />
+              Fresh Batch
+            </div>
+          )}
+          {isBestseller && (
+            <div className="bg-primary text-primary-foreground px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1 animate-pulse-slow">
+              ⭐ Bestseller
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Content */}

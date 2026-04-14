@@ -17,6 +17,7 @@ const products = [
       { weight: "1 Kg", price: "₹250" },
     ],
     isFresh: true,
+    isBestseller: true,
   },
   {
     name: "Spicy Masala Banana Chips",
@@ -29,6 +30,7 @@ const products = [
       { weight: "1 Kg", price: "₹250" },
     ],
     isFresh: true,
+    isBestseller: true,
   },
   {
     name: "Long Salted Banana Chips",

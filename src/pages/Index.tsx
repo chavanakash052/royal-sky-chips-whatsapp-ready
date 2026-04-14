@@ -8,10 +8,12 @@ import ReviewsSection from "@/components/ReviewsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import PromoBanner from "@/components/PromoBanner";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <PromoBanner />
       <Header />
       <main>
         <HeroSection />
